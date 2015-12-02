@@ -25,6 +25,9 @@ scoreMap['aid'] = 95
 scoreMap['airport'] = 85
 scoreMap['flight'] = 90
 scoreMap['plane'] = 90
+scoreMap['adambakkam'] = 95
+scoreMap['kodambakkam'] = 95
+
 
 
 TRANSPORT_MAP = {
@@ -49,12 +52,13 @@ def parseTweet(tweet):
 	tweet['created_at'] = tweet['created_at'].split('+')[0]
 	tweet['timestampint'] = int(tweet['timestamp_ms'])
 	isFirst = True
-	words = tweet["text"].split(' ')
+	words = map(lambda x:x.lower(), tweet["text"].split(' '))
 	newTweets = []
 	theTweet = tweet
+	prevWord = None
 	for location in LOCATIONS:
 		for word in words:
-			score = fuzz.ratio(word.lower(), location)
+			score = fuzz.ratio(word, location)
 			if score > scoreMap[location]: 
 				if not isFirst:
 					tweet = cloneTweet(theTweet)
@@ -62,13 +66,24 @@ def parseTweet(tweet):
 				isFirst = False
 				newTweets.append(tweet)
 				break
+			score = fuzz.ratio(word, 'nagar')
+			if score > 90:
+				score = fuzz.ratio(prevWord+word, location)
+				if score > scoreMap[location]: 
+					if not isFirst:
+						tweet = cloneTweet(theTweet)
+					tweet["location"] = location
+					isFirst = False
+					newTweets.append(tweet)
+					break
+			prevWord = word
 	for key, values in TRANSPORT_MAP.iteritems():
 		done = False
 		for value in values:
 			if done:
 				break
 			for word in words:
-				score = fuzz.ratio(word.lower(), value)
+				score = fuzz.ratio(word, value)
 				if score > scoreMap[value]:
 					if not isFirst:
 						tweet = cloneTweet(theTweet)
@@ -83,7 +98,7 @@ def parseTweet(tweet):
 			if done:
 				break
 			for word in words:
-				score = fuzz.ratio(word.lower(), value)
+				score = fuzz.ratio(word, value)
 				if score > scoreMap[value]:
 					if not isFirst:
 						tweet = cloneTweet(theTweet)
