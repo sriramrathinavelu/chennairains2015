@@ -75,9 +75,12 @@ classifier = nltk.NaiveBayesClassifier.train(training_set)
 print classifier.show_most_informative_features(32)
 
 def getSentiment(tweet):
-	ret = classifier.classify(extract_features(tweet.split()))
-	print ret
-	return ret
+	ret = classifier.prob_classify(extract_features(tweet.split()))
+	if ret.prob(True) > .87:
+		return True
+	if ret.prob(False) > .75:
+		return False
+	return None
 
 #getSentiment('#ChennaiRainsHelp a house flooded in pallikaranai requires help immdtly Mr U.K .Srinivas 350A 1st for 9 th st kamakothi nagar no mobile')
 #getSentiment('@Actor_Siddharth @RJ_Balaji can provide lemon rice, jeera rice, plain rice for help #chennairains #mrcnagar ch-28')

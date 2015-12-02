@@ -187,9 +187,9 @@ class MongoDBCoordinator:
                     needRescuce = self.db['need_rescue']
                     offerRescue = self.db['offer_rescue']
 
-                    if RescueAnalyzer.getSentiment(tweet["text"]):
+                    if RescueAnalyzer.getSentiment(tweet["text"]) == True:
                         offerRescue.save(tweet)
-                    else:
+                    if RescueAnalyzer.getSentiment(tweet["text"]) == False:
                         needRescuce.save(tweet)
 
                 try:
