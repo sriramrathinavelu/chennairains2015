@@ -9,7 +9,7 @@ areasFile = open('chennaiAreas.txt', 'r')
 LOCATIONS = map (lambda x:x.replace(' ', '').lower(), areasFile.read().split('\n'))
 areasFile.close()
 
-scoreMap = defaultdict(lambda:75)
+scoreMap = defaultdict(lambda:85)
 scoreMap['bus'] = 90
 scoreMap['boat'] = 90
 scoreMap['train'] = 90
