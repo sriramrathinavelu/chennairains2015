@@ -163,10 +163,11 @@ class MongoDBCoordinator:
             match = strre.search(content)
 
             if match:
-                if term not in self.db.collection_names():
-                    self.db.create_collection(term)
+                #if term not in self.db.collection_names():
+                #    self.db.create_collection(term)
 
-               	collection = self.db[inflection.underscore(term.replace('#', ''))]
+               	#collection = self.db[inflection.underscore(term.replace('#', ''))]
+                collection = self.db['chennai_rains']
                 for _tweet in parseTweet(tweet):
                     collection.save(_tweet)
 

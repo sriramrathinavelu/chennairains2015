@@ -23,58 +23,70 @@
 
 {% block content%}
       
-<div class="alert alert-danger" role="alert">
-	<strong>Oh snap!</strong> There was a small bug which gave irrelevant tweets for a while. It's fixed now.
+
+<div class="row">
+	<div class='col-md-4'>
+		<br/>
+		<h3>Location</h3>
+		<br/>
+		<br/>
+		<select id="areas" class="form-control"> 
+		{% for loc in locations %}
+			<option value={{loc}}>{{loc}}</option>
+		{% endfor %}
+		</select>
+		<br/>
+		<br/>
+		<div style="text-align:center;">
+		<button id="searchBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		</div>
+		<br/>
+	</div>
+	<div class='col-md-4'>
+		<br/>
+		<h3>Transport</h3>
+		<br/>
+		<br/>
+		<select id="transportSel" class="form-control"> 
+		{% for t in transport %}
+			<option value={{t}}>{{t}}</option>
+		{% endfor %}
+		</select>
+		<br/>
+		<br/>
+		<div style="text-align:center;">
+		<button id="tBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		</div>
+		<br/>
+	</div>
+	<div class='col-md-4'>
+		<br/>
+		<h3>Services</h3>
+		<br/>
+		<br/>
+		<select id="serviceSel" class="form-control"> 
+		{% for s in service%}
+			<option value={{s}}>{{s}}</option>
+		{% endfor %}
+		</select>
+		<br/>
+		<br/>
+		<div style="text-align:center;">
+		<button id="sBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		</div>
+	</div>
 </div>
 
-<div class="page-header">
-	<h1 align="center">Search</h1>
+<div class='col-md-8'>
+	<div class="page-header">
+		<h1 align="center">Important Links</h1>
+	</div>
+	<br/>
+	<br/>
+  <div class="list-group">
+	<a href="https://docs.google.com/spreadsheets/d/1rZc3e9scewKxbZBn0vfDqkxOTy_NJYUBSfsVPgnkmdY/htmlview?pli=1&sle=true#gid=0&vpid=A1" class="list-group-item">Shelter/Food/Help Spreadsheet</a>
+	<a href="https://milaap.org/campaigns/Chennaifloods" class="list-group-item">Fund Raising</a>
+	<a href="http://chennairains.org/" class="list-group-item">Crowdsourced website for accomodation</a>
+  </div>
 </div>
-<br/>
-<br/>
-<h3>Location</h3>
-<br/>
-<br/>
-<select id="areas" class="form-control"> 
-{% for loc in locations %}
-	<option value={{loc}}>{{loc}}</option>
-{% endfor %}
-</select>
-<br/>
-<br/>
-<div style="text-align:center;">
-<button id="searchBtn" type="button" class="btn btn-lg btn-primary">Click</button>
-</div>
-<br/>
-<br/>
-<h3>Transport</h3>
-<br/>
-<br/>
-<select id="transportSel" class="form-control"> 
-{% for t in transport %}
-	<option value={{t}}>{{t}}</option>
-{% endfor %}
-</select>
-<br/>
-<br/>
-<div style="text-align:center;">
-<button id="tBtn" type="button" class="btn btn-lg btn-primary">Click</button>
-</div>
-<br/>
-<br/>
-<h3>Services</h3>
-<br/>
-<br/>
-<select id="serviceSel" class="form-control"> 
-{% for s in service%}
-	<option value={{s}}>{{s}}</option>
-{% endfor %}
-</select>
-<br/>
-<br/>
-<div style="text-align:center;">
-<button id="sBtn" type="button" class="btn btn-lg btn-primary">Click</button>
-</div>
-
-
 {% endblock %}
