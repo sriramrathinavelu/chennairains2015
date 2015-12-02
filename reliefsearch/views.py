@@ -43,5 +43,17 @@ def hotlineNumber(request):
 	context = {'tweets' : latestHotlineTweets}
 	return render(request, 'locationtweets.html', context)
 
+def needRescue(request):
+	limit = int(request.GET.get('limit', 1000))
+	tweets = NeedRescue.objects.all().order_by('-timestampint').limit(limit) 
+	context = {'tweets' : tweets}
+	return render(request, 'locationtweets.html', context)
+
+def offerRescue(request):
+	limit = int(request.GET.get('limit', 1000))
+	tweets = OfferRescue.objects.all().order_by('-timestampint').limit(limit) 
+	context = {'tweets' : tweets}
+	return render(request, 'locationtweets.html', context)
+
 def contactUs(request):
 	return render(request, 'contact.html', {})

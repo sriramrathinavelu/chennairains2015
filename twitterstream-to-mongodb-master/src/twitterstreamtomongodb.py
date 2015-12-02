@@ -32,6 +32,7 @@ from tweepy import Stream, API
 from tweepy.utils import import_simplejson
 
 from StreamParser import parseTweet, hasHotlineNumber
+import RescueAnalyzer
 
 json = import_simplejson()
 
@@ -166,16 +167,30 @@ class MongoDBCoordinator:
                 #if term not in self.db.collection_names():
                 #    self.db.create_collection(term)
 
-               	#collection = self.db[inflection.underscore(term.replace('#', ''))]
+                #collection = self.db[inflection.underscore(term.replace('#', ''))]
                 collection = self.db['chennai_rains']
                 for _tweet in parseTweet(tweet):
                     collection.save(_tweet)
-                if 'hotline_number' not in self.db.collection_names():
-                    self.db.create_collection('hotline_number')
+                #if 'hotline_number' not in self.db.collection_names():
+                #    self.db.create_collection('hotline_number')
 
                 collection = self.db['hotline_number']
                 if hasHotlineNumber(tweet):
                     collection.save(tweet)
+
+                if tweet.get('service'):
+                    if 'need_rescue' not in self.db.collection_names():
+                        self.db.create_collection('need_rescue')
+                    if 'offer_rescue' not in self.db.collection_names():
+                        self.db.create_collection('offer_rescue')
+
+                    needRescuce = self.db['need_rescue']
+                    offerRescue = self.db['offer_rescue']
+
+                    if RescueAnalyzer.getSentiment(tweet["text"]):
+                        offerRescue.save(tweet)
+                    else:
+                        needRescuce.save(tweet)
 
                 try:
                     print "[%-15s]%s" % (term, pretty_print_status(tweet))

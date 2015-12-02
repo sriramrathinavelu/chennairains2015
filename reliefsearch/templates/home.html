@@ -15,6 +15,12 @@
 		$("#sBtn").click(function(){
 			window.location.href='servicetweets?service='+$('#serviceSel').val()+'&limit='+$("#limitIp").val();
 		});
+		$("#offerrescue").click(function(){
+			window.location.href='needrescue?limit='+$("#limitIp").val();
+		});
+		$("#needrescue").click(function(){
+			window.location.href='offerrescue?limit='+$("#limitIp").val();
+		});
 	});
 </script>
 
@@ -23,15 +29,28 @@
 
 {% block content%}
 
-
+<div style="text-align:center">
+Limit the tweets to &nbsp;&nbsp; <input id="limitIp" value="1000"/>
+</div>
+<br/>
+<hr>
+<br/>
 <div class="alert alert-success" role="alert">
 This website can be viewed from <a href='http://www.chennairaintweets.com/'>www.chennairaintweets.com</a>. 
 </div>
 
+<div class="alert alert-info" role="alert">
+Experimental feature which tries to classify tweets. Click one of the buttons to see related tweets.
+</div>
 
 <div style="text-align:center">
-Limit the tweets to &nbsp;&nbsp; <input id="limitIp" value="1000"/>
+<button id="offerrescue" type="button" class="btn btn-lg btn-success">I want to help</button>
+<button id="needrescue" type="button" class="btn btn-lg btn-warning">I need help now</button>
 </div>
+
+<br/>
+<hr>
+<br/>
 
 <div class="row">
 	<div class='col-md-4'>
