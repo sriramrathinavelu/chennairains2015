@@ -55,7 +55,7 @@ def parseTweet(tweet):
 	for location in LOCATIONS:
 		for word in words:
 			score = fuzz.ratio(word.lower(), location)
-			if score > scoreMap[location] or location.startswith(word.lower()):
+			if score > scoreMap[location]: 
 				if not isFirst:
 					tweet = cloneTweet(theTweet)
 				tweet["location"] = location
