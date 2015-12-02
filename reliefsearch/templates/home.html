@@ -9,7 +9,12 @@
 		$("#searchBtn").click(function(){
 			window.location.href='locationtweets?location='+$('#areas').val();
 		});
-
+		$("#tBtn").click(function(){
+			window.location.href='transporttweets?transport='+$('#transportSel').val();
+		});
+		$("#sBtn").click(function(){
+			window.location.href='servicetweets?service='+$('#serviceSel').val();
+		});
 	});
 </script>
 
@@ -21,7 +26,11 @@
 <div class="page-header">
 	<h1 align="center">Search</h1>
 </div>
-
+<br/>
+<br/>
+<h3>Location</h3>
+<br/>
+<br/>
 <select id="areas" class="form-control"> 
 {% for loc in locations %}
 	<option value={{loc}}>{{loc}}</option>
@@ -31,6 +40,36 @@
 <br/>
 <div style="text-align:center;">
 <button id="searchBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+</div>
+<br/>
+<br/>
+<h3>Transport</h3>
+<br/>
+<br/>
+<select id="transportSel" class="form-control"> 
+{% for t in transport %}
+	<option value={{t}}>{{t}}</option>
+{% endfor %}
+</select>
+<br/>
+<br/>
+<div style="text-align:center;">
+<button id="tBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+</div>
+<br/>
+<br/>
+<h3>Services</h3>
+<br/>
+<br/>
+<select id="serviceSel" class="form-control"> 
+{% for s in service%}
+	<option value={{s}}>{{s}}</option>
+{% endfor %}
+</select>
+<br/>
+<br/>
+<div style="text-align:center;">
+<button id="sBtn" type="button" class="btn btn-lg btn-primary">Click</button>
 </div>
 
 

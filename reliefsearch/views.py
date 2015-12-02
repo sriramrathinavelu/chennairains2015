@@ -8,7 +8,23 @@ LOCATIONS = map (lambda x:x.replace(' ', ''), areasFile.read().split('\n'))
 areasFile.close()
 
 def home(request):
-	return render(request, 'home.html', {'locations':LOCATIONS})
+	return render(request, 'home.html', {
+		'locations':LOCATIONS,
+		'transport':['train', 'bus', 'flight'],
+		'service':['food', 'stay', 'power', 'helpline']
+	})
+
+def serviceTweets(request):
+	service = request.GET.get('service')
+	tweets = ChennaiRains.objects.filter(service=service)
+	context = {'tweets' : tweets}
+	return render(request, 'locationtweets.html', context)
+
+def transportTweets(request):
+	transport = request.GET.get('transport')
+	tweets = ChennaiRains.objects.filter(transport=transport)
+	context = {'tweets' : tweets}
+	return render(request, 'locationtweets.html', context)
 
 def locationTweets(request):
 	location = request.GET.get('location')

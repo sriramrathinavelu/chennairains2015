@@ -8,7 +8,9 @@ class ChennaiRains(Document):
 	user = DictField()
 	timestamp_ms = LongField()
 	created_at = StringField()
-	location = StringField(required=True, null=False)
+	location = StringField()
+	transport = StringField()
+	service = StringField()
 	meta = {'strict' : False}
 
 	def __str__(self):
