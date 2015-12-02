@@ -22,6 +22,9 @@ scoreMap['army'] = 85
 scoreMap['navy'] = 85
 scoreMap['relief'] = 70
 scoreMap['aid'] = 95
+scoreMap['airport'] = 85
+scoreMap['flight'] = 90
+scoreMap['plane'] = 90
 
 TRANSPORT_MAP = {
 	'train'		:	['train', 'metro'],
