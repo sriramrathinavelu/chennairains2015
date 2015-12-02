@@ -3,6 +3,7 @@ fuzzywuzzy==0.8.0
 inflection==0.3.1
 lxml==3.4.3
 mongoengine==0.10.5
+nltk==3.1
 oauthlib==1.0.3
 pygexf==0.2.2
 pymongo==3.0.1
