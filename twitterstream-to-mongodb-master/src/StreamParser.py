@@ -9,7 +9,7 @@ areasFile = open('chennaiAreas.txt', 'r')
 LOCATIONS = map (lambda x:x.replace(' ', '').lower(), areasFile.read().split('\n'))
 areasFile.close()
 
-scoreMap = defaultdict(lambda:70)
+scoreMap = defaultdict(lambda:75)
 scoreMap['bus'] = 90
 scoreMap['boat'] = 90
 scoreMap['train'] = 90
@@ -25,6 +25,7 @@ scoreMap['aid'] = 95
 scoreMap['airport'] = 85
 scoreMap['flight'] = 90
 scoreMap['plane'] = 90
+
 
 TRANSPORT_MAP = {
 	'train'		:	['train', 'metro'],
@@ -54,7 +55,7 @@ def parseTweet(tweet):
 	for location in LOCATIONS:
 		for word in words:
 			score = fuzz.ratio(word.lower(), location)
-			if score > scoreMap[location]:
+			if score > scoreMap[location] or location.startswith(word.lower()):
 				if not isFirst:
 					tweet = cloneTweet(theTweet)
 				tweet["location"] = location

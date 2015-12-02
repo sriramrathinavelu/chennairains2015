@@ -15,19 +15,19 @@ def home(request):
 	})
 
 def serviceTweets(request):
-	service = request.GET.get('service')
+	service = request.GET.get('service').lower()
 	tweets = ChennaiRains.objects.filter(service=service).order_by('-timestampint')
 	context = {'tweets' : tweets}
 	return render(request, 'locationtweets.html', context)
 
 def transportTweets(request):
-	transport = request.GET.get('transport')
+	transport = request.GET.get('transport').lower()
 	tweets = ChennaiRains.objects.filter(transport=transport).order_by('-timestampint')
 	context = {'tweets' : tweets}
 	return render(request, 'locationtweets.html', context)
 
 def locationTweets(request):
-	location = request.GET.get('location')
+	location = request.GET.get('location').lower()
 	tweets = ChennaiRains.objects.filter(location=location).order_by('-timestampint')
 	context = {'tweets' : tweets}
 	return render(request, 'locationtweets.html', context)
