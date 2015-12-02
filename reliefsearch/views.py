@@ -10,7 +10,7 @@ areasFile.close()
 def home(request):
 	return render(request, 'home.html', {
 		'locations':LOCATIONS,
-		'transport':['train', 'bus', 'flight'],
+		'transport':['train', 'bus', 'boat', 'flight'],
 		'service':['food', 'stay', 'power', 'helpline']
 	})
 

@@ -2,6 +2,8 @@ from fuzzywuzzy import fuzz
 from collections import defaultdict
 import copy
 
+import sys
+
 
 areasFile = open('chennaiAreas.txt', 'r')
 LOCATIONS = map (lambda x:x.replace(' ', '').lower(), areasFile.read().split('\n'))
@@ -13,6 +15,7 @@ scoreMap['train'] = 90
 TRANSPORT_MAP = {
 	'train'		:	['train', 'metro'],
 	'bus'		:	['bus', 'busstop', 'auto'],
+	'boat'		:	['boat', 'ship', 'waterscooter'],
 	'flight'	:	['airport', 'plane', 'flight'],
 }
 
@@ -54,9 +57,9 @@ def parseTweet(tweet):
 						tweet = cloneTweet(theTweet)
 					tweet["transport"] = key
 					isFirst = False
-				newTweets.append(tweet)
-				done = True
-				break
+					newTweets.append(tweet)
+					done = True
+					break
 	for key, values in SERVICE_MAP.iteritems():
 		done = False
 		for value in values:
@@ -69,8 +72,8 @@ def parseTweet(tweet):
 						tweet = cloneTweet(theTweet)
 					tweet["service"] = key
 					isFirst = False
-				newTweets.append(tweet)
-				done = True
-				break
+					newTweets.append(tweet)
+					done = True
+					break
 	return newTweets
 
