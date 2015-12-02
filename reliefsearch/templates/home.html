@@ -7,13 +7,13 @@
 <script type="text/JavaScript">
 	$(function(){
 		$("#searchBtn").click(function(){
-			window.location.href='locationtweets?location='+$('#areas').val();
+			window.location.href='locationtweets?location='+$('#areas').val()+'&limit='+$("#limitIp").val();
 		});
 		$("#tBtn").click(function(){
-			window.location.href='transporttweets?transport='+$('#transportSel').val();
+			window.location.href='transporttweets?transport='+$('#transportSel').val()+'&limit='+$("#limitIp").val();
 		});
 		$("#sBtn").click(function(){
-			window.location.href='servicetweets?service='+$('#serviceSel').val();
+			window.location.href='servicetweets?service='+$('#serviceSel').val()+'&limit='+$("#limitIp").val();
 		});
 	});
 </script>
@@ -22,7 +22,10 @@
 
 
 {% block content%}
-      
+
+<div style="text-align:center">
+Limit the tweets to &nbsp;&nbsp; <input id="limitIp" value="1000"/>
+</div>
 
 <div class="row">
 	<div class='col-md-4'>
@@ -86,6 +89,7 @@
 	<a href="http://www.rapidresponse.org.in/donate.htm" class="list-group-item">Rapid Response Donation</a>
 	<a href="http://www.worldvision.in/chennaifloods" class="list-group-item">World Vision</a>
 	<a href="http://osm-in.github.io/flood-map/chennai.html#11/13.0000/80.2000/-30" class="list-group-item">Flood Map</a>
+	<a href="https://www.gofundme.com/fundchennaislums" class="list-group-item">Fund Raiser For Chennai slums</a>
   </div>
 </div>
 {% endblock %}
