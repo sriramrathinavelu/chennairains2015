@@ -10,7 +10,18 @@ LOCATIONS = map (lambda x:x.replace(' ', '').lower(), areasFile.read().split('\n
 areasFile.close()
 
 scoreMap = defaultdict(lambda:70)
+scoreMap['bus'] = 90
+scoreMap['boat'] = 90
 scoreMap['train'] = 90
+scoreMap['food'] = 95
+scoreMap['hunger'] = 80
+scoreMap['starvation'] = 80
+scoreMap['shelter'] = 80
+scoreMap['tneb'] = 90
+scoreMap['army'] = 85
+scoreMap['navy'] = 85
+scoreMap['relief'] = 70
+scoreMap['aid'] = 95
 
 TRANSPORT_MAP = {
 	'train'		:	['train', 'metro'],
@@ -21,16 +32,18 @@ TRANSPORT_MAP = {
 
 
 SERVICE_MAP = {
-	'food'		:	['food', 'foodpacket', 'hunger'],
+	'food'		:	['food', 'foodpacket', 'hunger', 'starvation'],
 	'stay'		:	['accomodation', 'shelter'],
 	'power'		:	['electricity', 'power', 'tneb'],
-	'helpline'	:	['help', 'helpline', 'army', 'navy', 'relief']
+	'helpline'	:	['help', 'helpline', 'army', 'navy', 'relief', 'aid']
 }
 
 def cloneTweet(tweet):
 	return copy.copy(tweet)
 
 def parseTweet(tweet):
+	tweet['created_at'] = tweet['created_at'].split('+')[0]
+	tweet['timestampint'] = int(tweet['timestamp_ms'])
 	isFirst = True
 	words = tweet["text"].split(' ')
 	newTweets = []
