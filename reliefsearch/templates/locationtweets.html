@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block jquery %}
+
+<script type="text/JavaScript">
+	$(function(){
+		$("#homeBtn").click(function(){
+			window.location.href='/';
+		});
+	});
+</script>
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="page-header">
+	<h1 align="center">Tweets</h1>
+</div>
+
+
+<div class="row"> 
+	<div class="col-md-6">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Tweet</th>
+				</tr>
+			</thead>
+			{% for tweet in tweets %} 
+				<tr>
+					<td>{{ forloop.counter0 }}</td>
+					<td>{{tweet.text}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+<br/>
+<br/>
+<div style="text-align:center;">
+<button id="homeBtn" type="button" class="btn btn-lg btn-primary">Home</button>
+</div>
+
+
+{% endblock %}

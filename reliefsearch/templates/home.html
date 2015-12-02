@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block jquery %}
+
+<script type="text/JavaScript">
+	$(function(){
+		$("#searchBtn").click(function(){
+			window.location.href='locationtweets?location='+$('#areas').val();
+		});
+
+	});
+</script>
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="page-header">
+	<h1 align="center">Search</h1>
+</div>
+
+<select id="areas" class="form-control"> 
+{% for loc in locations %}
+	<option value={{loc}}>{{loc}}</option>
+{% endfor %}
+</select>
+<br/>
+<br/>
+<div style="text-align:center;">
+<button id="searchBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+</div>
+
+
+{% endblock %}
