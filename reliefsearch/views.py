@@ -31,3 +31,6 @@ def locationTweets(request):
 	tweets = ChennaiRains.objects.filter(location=location).order_by('-timestampint')
 	context = {'tweets' : tweets}
 	return render(request, 'locationtweets.html', context)
+
+def contactUs(request):
+	return render(request, 'contact.html', {})

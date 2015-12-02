@@ -6,4 +6,5 @@ urlpatterns = [
 	url(r'locationtweets', views.locationTweets, name='Tweets'),
 	url(r'transporttweets', views.transportTweets, name='Tweets'),
 	url(r'servicetweets', views.serviceTweets, name='Tweets'),
+	url(r'contact', views.contactUs, name='contact')
 ]

@@ -29,7 +29,6 @@
 		<br/>
 		<h3>Location</h3>
 		<br/>
-		<br/>
 		<select id="areas" class="form-control"> 
 		{% for loc in locations %}
 			<option value={{loc}}>{{loc}}</option>
@@ -38,14 +37,13 @@
 		<br/>
 		<br/>
 		<div style="text-align:center;">
-		<button id="searchBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		<button id="searchBtn" type="button" class="btn btn-lg btn-primary">Search</button>
 		</div>
 		<br/>
 	</div>
 	<div class='col-md-4'>
 		<br/>
 		<h3>Transport</h3>
-		<br/>
 		<br/>
 		<select id="transportSel" class="form-control"> 
 		{% for t in transport %}
@@ -55,14 +53,13 @@
 		<br/>
 		<br/>
 		<div style="text-align:center;">
-		<button id="tBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		<button id="tBtn" type="button" class="btn btn-lg btn-primary">Search</button>
 		</div>
 		<br/>
 	</div>
 	<div class='col-md-4'>
 		<br/>
 		<h3>Services</h3>
-		<br/>
 		<br/>
 		<select id="serviceSel" class="form-control"> 
 		{% for s in service%}
@@ -72,23 +69,23 @@
 		<br/>
 		<br/>
 		<div style="text-align:center;">
-		<button id="sBtn" type="button" class="btn btn-lg btn-primary">Click</button>
+		<button id="sBtn" type="button" class="btn btn-lg btn-primary">Search</button>
 		</div>
 	</div>
 </div>
 
-<div class='col-md-8'>
+<div class='col-md-4'>
 	<div class="page-header">
 		<h1 align="center">Important Links</h1>
 	</div>
-	<br/>
-	<br/>
   <div class="list-group">
 	<a href="https://docs.google.com/spreadsheets/d/1rZc3e9scewKxbZBn0vfDqkxOTy_NJYUBSfsVPgnkmdY/htmlview?pli=1&sle=true#gid=0&vpid=A1" class="list-group-item">Shelter/Food/Help Spreadsheet</a>
+	<a href="https://docs.google.com/spreadsheets/d/1tCRi8Dhb2Fxs-K_jvA4BsPk4Wd9pXFOuEgBgpecnirw/htmlview?sle=true#" class="list-group-item">Doctors Information</a>
 	<a href="https://milaap.org/campaigns/Chennaifloods" class="list-group-item">Fund Raising</a>
 	<a href="http://chennairains.org/" class="list-group-item">Crowdsourced website for accomodation</a>
 	<a href="http://www.rapidresponse.org.in/donate.htm" class="list-group-item">Rapid Response Donation</a>
 	<a href="http://www.worldvision.in/chennaifloods" class="list-group-item">World Vision</a>
+	<a href="http://osm-in.github.io/flood-map/chennai.html#11/13.0000/80.2000/-30" class="list-group-item">Flood Map</a>
   </div>
 </div>
 {% endblock %}
