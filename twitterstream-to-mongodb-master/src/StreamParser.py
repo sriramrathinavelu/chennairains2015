@@ -1,8 +1,8 @@
 from fuzzywuzzy import fuzz
 from collections import defaultdict
 import copy
-
 import sys
+import re
 
 
 areasFile = open('chennaiAreas.txt', 'r')
@@ -28,7 +28,7 @@ scoreMap['plane'] = 90
 scoreMap['adambakkam'] = 95
 scoreMap['kodambakkam'] = 95
 
-
+regex = re.compile('\+?\d{10}')
 
 TRANSPORT_MAP = {
 	'train'		:	['train', 'metro'],
@@ -47,6 +47,13 @@ SERVICE_MAP = {
 
 def cloneTweet(tweet):
 	return copy.copy(tweet)
+
+def hasHotlineNumber(tweet):
+	tweet['created_at'] = tweet['created_at'].split('+')[0]
+	tweet['timestampint'] = int(tweet['timestamp_ms'])
+	if regex.search(tweet["text"]):
+		return True
+	return False	
 
 def parseTweet(tweet):
 	tweet['created_at'] = tweet['created_at'].split('+')[0]

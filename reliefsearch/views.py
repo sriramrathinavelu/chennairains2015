@@ -8,10 +8,12 @@ LOCATIONS = map (lambda x:x.replace(' ', ''), areasFile.read().split('\n'))
 areasFile.close()
 
 def home(request):
+	latestHotlineTweets = HotlineNumber.objects.all().order_by('-timestampint').limit(10) 
 	return render(request, 'home.html', {
-		'locations':LOCATIONS,
-		'transport':['train', 'bus', 'boat', 'flight'],
-		'service':['food', 'stay', 'power', 'helpline']
+		'locations'		:LOCATIONS,
+		'transport'		:['train', 'bus', 'boat', 'flight'],
+		'service'		:['food', 'stay', 'power', 'helpline'],
+		'hotlineTweets'	:latestHotlineTweets,
 	})
 
 def serviceTweets(request):
@@ -33,6 +35,12 @@ def locationTweets(request):
 	limit = int(request.GET.get('limit', 1000))
 	tweets = ChennaiRains.objects.filter(location=location).order_by('-timestampint').limit(limit)
 	context = {'tweets' : tweets}
+	return render(request, 'locationtweets.html', context)
+
+def hotlineNumber(request):
+	limit = int(request.GET.get('limit', 1000))
+	latestHotlineTweets = HotlineNumber.objects.all().order_by('-timestampint').limit(limit) 
+	context = {'tweets' : latestHotlineTweets}
 	return render(request, 'locationtweets.html', context)
 
 def contactUs(request):

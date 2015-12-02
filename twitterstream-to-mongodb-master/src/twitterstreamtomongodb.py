@@ -31,7 +31,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream, API
 from tweepy.utils import import_simplejson
 
-from StreamParser import parseTweet
+from StreamParser import parseTweet, hasHotlineNumber
 
 json = import_simplejson()
 
@@ -170,6 +170,12 @@ class MongoDBCoordinator:
                 collection = self.db['chennai_rains']
                 for _tweet in parseTweet(tweet):
                     collection.save(_tweet)
+                if 'hotline_number' not in self.db.collection_names():
+                    self.db.create_collection('hotline_number')
+
+                collection = self.db['hotline_number']
+                if hasHotlineNumber(tweet):
+                    collection.save(tweet)
 
                 try:
                     print "[%-15s]%s" % (term, pretty_print_status(tweet))
